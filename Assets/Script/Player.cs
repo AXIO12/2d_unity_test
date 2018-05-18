@@ -59,8 +59,8 @@ public class Player : MonoBehaviour {
                 rb2d.AddForce(Vector2.up * flap);
                 jump = true;
                 ParticleManager.PlayParticle("test", GetComponent<Transform>().position);
-                ParticleManager.PlayParticle("aaa", "penguin","key_aaa");
-                ParticleManager.PlayParticle("bbb","penguin","key_bbb");
+                ParticleManager.PlayParticle("Drag_01 Warp-strike Noise", "penguin","key_aaa");
+                ParticleManager.PlayParticle("Spiral_02.1.3 Portal", "penguin","key_bbb");
                 channel++;
                 Sound.PlaySe("jump");
             }
