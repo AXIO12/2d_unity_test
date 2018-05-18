@@ -65,7 +65,9 @@ public static class ParticleManager{
         var tags = GameObject.FindGameObjectsWithTag(objName);
         foreach (var tag in tags)
         {
-            tag.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            tag.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            //tag.GetComponent<randomParticleRotation>().y = false;
+            //tag.GetComponent<ParticleSystem>().Pause();
         }
 
     }
