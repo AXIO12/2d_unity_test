@@ -10,6 +10,7 @@ public class ParticlePooler{
     {
         this.particleName = "Effects/" + particleName;
     }
+    //キーの指定があった場合
     public ParticlePooler(string particleName,string objName)
     {
         this.particleName = "Effects/" + particleName;
@@ -54,6 +55,9 @@ public class ParticlePooler{
 	/// 指定の座標で再生
 	/// </summary>
 	/// <param name="position">Position.</param>
+    /// 
+
+    //指定座標表示
 	public void Play(Vector3 position){
 		ParticleSystem particle = GetPlayableParticle();
 		if(particle == null){
@@ -64,6 +68,7 @@ public class ParticlePooler{
 		particle.Play();
 	}
 
+    //親オブジェクトを指定
     public void Play(string name)
     {
         GameObject obj;
@@ -80,7 +85,7 @@ public class ParticlePooler{
         particle.Play();
     }
 
-
+    //停止
     public void Stop()
     {
         ParticleSystem particle = GetPlayableParticle();
@@ -109,6 +114,7 @@ public class ParticlePooler{
 		GameObject particleGO = GameObject.Instantiate(particleOrigin) as GameObject;
         if (objectName != null)
         {
+            //キーをタグに追加
             particleGO.name = objectName;
             TagHelper.AddTag(objectName);
             particleGO.tag = objectName;
