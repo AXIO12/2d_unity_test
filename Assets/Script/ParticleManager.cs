@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public static class ParticleManager{
+public static class ParticleManager
+{
 
-	/// <summary>
-	/// プール用オブジェクトのリスト
-	/// </summary>
-	private static List<ParticlePooler> particlePoolerList = new List<ParticlePooler>();
-    
+    /// <summary>
+    /// プール用オブジェクトのリスト
+    /// </summary>
+    private static List<ParticlePooler> particlePoolerList = new List<ParticlePooler>();
+
     /// <summary>
     /// 指定した名前のパーティクル再生
     /// 	初めて再生するパーティクルはプール用オブジェクトを生成
@@ -34,13 +35,25 @@ public static class ParticleManager{
     }
 
     //親オブジェクト指定可能
-    public static void PlayParticle(string particleName, string objName, string keyName)
-    {  
+    public static void PlayParticle(string particleName, string objName, string keyName, bool distinct = false)
+    {
+        try
+        {
+            GameObject ret = GameObject.FindWithTag(keyName);
+            if (distinct && ret) {
+                ret.GetComponent<ParticleSystem>().Play();
+                return;
+            }
+        }
+        catch
+        {
+            
+        }
         ParticlePooler pooler = particlePoolerList.Where(tempPooler => tempPooler.ParticleName == particleName).FirstOrDefault();
         if (pooler == null)
         {
             //取得できなければ新たに生成
-            pooler = new ParticlePooler(particleName,keyName);
+            pooler = new ParticlePooler(particleName, keyName);
             particlePoolerList.Add(pooler);
         }
         pooler.Play(objName);
@@ -50,12 +63,22 @@ public static class ParticleManager{
 
 
 
-
+    public static void PauseParticle(string keyName)
+    {
+        var tags = GameObject.FindGameObjectsWithTag(keyName);
+        Debug.Log(tags);
+        foreach (var tag in tags)
+        {
+            tag.GetComponent<ParticleSystem>().Pause();
+        }
+    }
 
     //キーで指定したパーティクルの停止
     public static void StopParticle(string keyName)
     {
+
         var tags = GameObject.FindGameObjectsWithTag(keyName);
+        Debug.Log(tags);
         foreach (var tag in tags)
         {
             tag.GetComponent<ParticleSystem>().Stop();

@@ -43,10 +43,6 @@ public class Player : MonoBehaviour {
         {
             ParticleManager.StopParticle("key_aaa");
         }
-        if (Input.GetKey(KeyCode.F))
-        {
-            ParticleManager.StopParticle("key_bbb");
-        }
 
         rb2d.velocity = new Vector2(direction * speed,rb2d.velocity.y); 
          
@@ -58,9 +54,7 @@ public class Player : MonoBehaviour {
                 rb2d.velocity = new Vector2(rb2d.velocity.x,0);
                 rb2d.AddForce(Vector2.up * flap);
                 jump = true;
-                //ParticleManager.PlayParticle("test", GetComponent<Transform>().position);
-                ParticleManager.PlayParticle("penguin", "penguin","key_aaa");
-                ParticleManager.PlayParticle("aaa","penguin","key_bbb");
+                ParticleManager.PlayParticle("cloud of dust", "penguin", "key_aaa");
                 channel++;
                 Sound.PlaySe("jump");
             }
