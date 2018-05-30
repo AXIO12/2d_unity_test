@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
                 rb2d.velocity = new Vector2(rb2d.velocity.x,0);
                 rb2d.AddForce(Vector2.up * flap);
                 jump = true;
-                ParticleManager.PlayParticle("cloud of dust", "penguin", "key_aaa");
+                ParticleManager.PlayParticle("cloud of dust", "penguin", "key_aaa",true);
                 channel++;
                 Sound.PlaySe("jump");
             }

@@ -80,7 +80,13 @@ public class ParticlePooler{
             particle = InstantiateParticle();
             Debug.Log("パーティクル生成");
         }
-        particle.transform.position = obj.transform.position;
+
+        Vector3 pos = new Vector3();
+        pos = obj.transform.position;
+        pos.y -= (obj.GetComponent<SpriteRenderer>().bounds.size.y / 2);
+
+        particle.transform.position = pos;
+
         particle.transform.parent = obj.transform;
         particle.Play();
     }
